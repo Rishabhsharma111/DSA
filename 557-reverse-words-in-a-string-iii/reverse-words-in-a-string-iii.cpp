@@ -11,7 +11,7 @@ public:
             for(int i =word.size()-1;i>=0;i--)
             {
 
-               ans += word[i];
+               ans += word[i];  //ans=ans+word[i] shows time issue
             }
                 ans+=" ";
         }
