@@ -9,7 +9,7 @@ public:
                string key =s;
             sort(key.begin(),key.end());
 
-         mp[key].push_back(s);
+         mp[key].push_back(s);  //add in hashing
         }
         vector<vector<string>>ans;
         for(auto it:mp){
