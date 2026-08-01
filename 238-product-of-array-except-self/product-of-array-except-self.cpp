@@ -4,6 +4,8 @@ public:
 
         vector<int>answer(nums.size());
 
+        //product execpt i=leftproduct+rightproduct;
+
         int prefixproduct=1;
         int ans=0;
 
