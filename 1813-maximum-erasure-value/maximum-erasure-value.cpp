@@ -10,7 +10,7 @@ public:
         int maxi=INT_MIN;
         while(r<nums.size()){
 
-            if(mp.count(nums[r])){
+            if(mp.count(nums[r])){ //count is used to find in map
                 temp=mp[nums[r]];
                 mp[nums[r]]=r;
 
