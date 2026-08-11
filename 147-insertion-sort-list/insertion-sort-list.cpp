@@ -13,11 +13,11 @@ public:
     ListNode* insertionSortList(ListNode* head) {
         ListNode*dummy=new ListNode(0);
         
-
+//use a seprate dummy node 
         ListNode*curr=head;
 
         while(curr!=NULL){
-            ListNode*next=curr->next;
+            ListNode*next=curr->next;  //save node 
 
             ListNode*prev=dummy;
 
@@ -25,7 +25,7 @@ public:
                 prev=prev->next;
             }
 
-            curr->next=prev->next;
+            curr->next=prev->next;  //insert curr in btw prevand prev next
             prev->next=curr;
 
             curr=next;
