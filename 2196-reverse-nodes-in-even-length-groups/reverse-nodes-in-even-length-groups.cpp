@@ -8,63 +8,88 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
 class Solution {
 public:
     ListNode* reverseEvenLengthGroups(ListNode* head) {
 
-        ListNode*dummy=new ListNode (0);
-        dummy->next=head;
+        // Dummy node helps us easily connect the reversed groups
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
 
-        int groupsize=1;
+        // Expected size of the current group: 1, 2, 3, 4...
+        int groupsize = 1;
 
-          ListNode*groupprev=dummy;
-        ListNode*groupstart=head;
+        // Node before the current group
+        ListNode* groupprev = dummy;
 
-        while(groupstart!=NULL){
-            int actualsize=0;
-            ListNode*groupend=groupstart;
+        // First node of the current group
+        ListNode* groupstart = head;
 
-            while(groupend&&actualsize<groupsize){
+        while (groupstart != NULL) {
+
+            int actualsize = 0;
+
+            // Find the last node of the current group
+            ListNode* groupend = groupstart;
+
+            while (groupend && actualsize < groupsize) {
                 actualsize++;
-                if(actualsize==groupsize||!groupend->next){
+
+                // Stop if we reached the expected group size
+                // OR reached the last node of the list
+                if (actualsize == groupsize || !groupend->next) {
                     break;
                 }
-                 groupend=groupend->next;
-               
+
+                groupend = groupend->next;
             }
-            ListNode*groupnext=groupend->next ;
 
-            if(actualsize%2==0){
+            // First node of the next group
+            ListNode* groupnext = groupend->next;
 
-                ListNode*prev=groupnext;
-                ListNode*curr=groupstart;
+            // Reverse only if the actual group size is even
+            if (actualsize % 2 == 0) {
 
-                while(actualsize--){
+                // Start prev from the next group so that
+                // reversed group connects directly to it
+                ListNode* prev = groupnext;
+                ListNode* curr = groupstart;
 
-                    ListNode*getnext=curr->next;
-                    curr->next=prev;
-                    prev=curr;
-                    curr=getnext;
+                // Reverse exactly 'actualsize' nodes
+                while (actualsize--) {
 
+                    ListNode* getnext = curr->next;
+
+                    // Reverse current node's link
+                    curr->next = prev;
+
+                    prev = curr;
+                    curr = getnext;
                 }
 
-                groupprev->next=prev;
+                // Connect previous group to the new first node
+                // of the reversed group
+                groupprev->next = prev;
 
-                
-               groupprev=groupstart;
+                // Original groupstart is now the last node
+                // of the reversed group
+                groupprev = groupstart;
             }
 
-            else{
-                groupprev=groupend;
+            else {
+                // Odd-sized group is not reversed,
+                // so groupend remains the last processed node
+                groupprev = groupend;
             }
-            groupstart=groupnext;
 
+            // Move to the next group
+            groupstart = groupnext;
+
+            // Increase expected group size
             groupsize++;
-
-
-
         }
-        
+
         return dummy->next;
     }
 };
