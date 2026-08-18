@@ -12,6 +12,7 @@ class Solution {
 public:
     vector<int> nextLargerNodes(ListNode* head) {
 
+            //use montonic stack 
        
 
         ListNode*curr=head;
