@@ -1,18 +1,24 @@
 class Solution {
 public:
     int maximumWealth(vector<vector<int>>& accounts) {
-        int maxWealth = 0;
 
-        for(int i = 0; i < accounts.size(); i++){   //traverese each row
-            int sum = 0;
+       
+        int maxi=INT_MIN;
+        int n=accounts.size();
+        int m=accounts[0].size();
 
-            for(int j = 0; j < accounts[i].size(); j++){
-                sum += accounts[i][j];   // sum of current customer
+        for(int i=0;i<n;i++){
+             int sum=0;
+            for(int j=0;j<m;j++){
+                sum+=accounts[i][j];
+
+               
+                }
+                 if(sum>maxi){
+                    maxi=sum;
             }
-
-            maxWealth = max(maxWealth, sum);  // update maximum wealth
         }
-
-        return maxWealth;
+        return maxi;
+        
     }
 };
